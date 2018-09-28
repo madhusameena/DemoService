@@ -23,7 +23,17 @@ namespace DemoService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+          
+			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+			{
+				builder.AllowAnyOrigin()
+					   .AllowAnyMethod()
+					   .AllowAnyHeader()
+					   .AllowCredentials();
+					   
+				       
+			}));
+			services.AddMvc();
 			var connection = @"Server=demoservice.database.windows.net;Database=DemoService;user id=ShyamMergu;password=sam@1918";
 			services.AddDbContext<DemoServiceContext>(options => options.UseSqlServer(connection));
 		}
@@ -41,7 +51,7 @@ namespace DemoService
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+			app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
