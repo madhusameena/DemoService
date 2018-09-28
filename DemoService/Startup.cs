@@ -26,7 +26,7 @@ namespace DemoService
           
 			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 			{
-				builder.AllowAnyOrigin()
+				builder.WithOrigins("*")
 					   .AllowAnyMethod()
 					   .AllowAnyHeader()
 					   .AllowCredentials();
