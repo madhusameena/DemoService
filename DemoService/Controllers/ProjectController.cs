@@ -12,7 +12,7 @@ namespace DemoService.Controllers
 	[EnableCors("MyPolicy")]
 	[Route("[controller]")]
 	public class ProjectController
-    {
+	{
 		private readonly DemoServiceContext _context;
 
 		public ProjectController(DemoServiceContext context)
